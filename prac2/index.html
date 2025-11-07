@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiplication Table Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>Multiplication Table Generator</h2>
+
+    <div class="input-section">
+      <label for="numberInput">Enter a number:</label>
+      <input type="number" id="numberInput" placeholder="e.g.5" />
+
+      <label for="limitInput">Enter multiplier limit:</label>
+      <input type="number" id="limitInput" placeholder="e.g.10,20" />
+    </div>
+
+    <div class="button-row">
+      <button onclick="generateTableUsingForLoop()">For Loop</button>
+      <button onclick="generateTableUsingWhileLoop()">While Loop</button>
+      <button onclick="generateTableUsingDoWhileLoop()">Do-While Loop</button>
+    </div>
+
+    <div class="results-container">
+      <div id="forResult" class="resultBox"></div>
+      <div id="whileResult" class="resultBox"></div>
+      <div id="doResult" class="resultBox"></div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif; /* Clean readable font */
+  background: #f0f0f0; /* Light gray background */
+  text-align: center; /* Center all text elements */
+  margin: 0; /* Remove default margin */
+}
+
+/* Container box for timer */
+.container {
+  background: #fff; /* White card background */
+  padding: 20px; /* Inner spacing */
+  width: 320px; /* Fixed width for layout balance */
+  margin: 30px auto; /* Center container */
+}
+
+/* Main heading */
+h1 {
+  color: #333; /* Dark gray heading */
+  margin-bottom: 15px;
+}
+
+/* Input field styling */
+input[type="datetime-local"] {
+  padding: 8px;
+}
+
+/* Button styling */
+button {
+  padding: 8px 16px;
+  background: #4caf50; /* Green button */
+  color: white;
+  margin-top: 10px;
+}
+
+/* Countdown text output */
+#countdown {
+  font-size: 20px;
+  margin-top: 15px;
+  color: #ff6347; /* Tomato red text color */
+}

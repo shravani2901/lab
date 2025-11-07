@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String Operations</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>String Operations</h1>
+
+      <div class="operation">
+        <label for="reverseInput">Reverse String:</label>
+        <input type="text" id="reverseInput" placeholder="Enter a String" />
+        <button onclick="reverseString()">Reverse</button>
+        <p id="reverseResult" class="result"></p>
+      </div>
+
+      <div class="operation">
+        <label for="palindromeInput">Check Palindrome:</label>
+        <input type="text" id="palindromeInput" placeholder="Enter a String" />
+        <button onclick="checkPalindrome()">Check</button>
+        <p id="palindromeResult" class="result"></p>
+      </div>
+
+      <div class="operation">
+        <label for="replaceInput">Replace Characters:</label>
+        <input type="text" id="replaceInput" placeholder="Enter a String" />
+
+        <div class="replace-inputs">
+          <input type="text" id="oldChar" maxlength="1" placeholder="old" />
+          <input type="text" id="newChar" maxlength="1" placeholder="New" />
+        </div>
+
+        <button onclick="replaceChar(false)">Replace</button>
+        <button onclick="replaceChar(true)">Replace All</button>
+        <p id="replaceResult" class="result"></p>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

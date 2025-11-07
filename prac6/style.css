@@ -1,0 +1,33 @@
+body {
+  font-family: Arial, sans-serif; /* Clean, readable font */
+  background-color: #f7f7f7; /* Light gray background */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container {
+  text-align: center;
+  background-color: #d6bbbb; /* White card background */
+  padding: 25px 30px;
+  margin-top: 5px;
+  width: 360px; /* Fixed width for uniform layout */
+}
+input {
+  padding: 10px;
+  width: 50%;
+  border-color: aqua;
+  background-color: #919e91;
+}
+button {
+  padding: 10px 20px;
+  background-color: #4caf50; /* Green background */
+  color: #fff;
+}
+
+.result {
+  margin-top: 15px;
+  background: #e8f5e9; /* Light green background */
+  padding: 10px;
+  color: #2e7d32; /* Darker green text */
+}

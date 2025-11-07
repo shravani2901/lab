@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Operations</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Array Operations</h1>
+
+      <label>Enter Array Size:</label><br />
+      <input type="number" id="arraySize" placeholder="e.g.5" /><br /><br />
+
+      <label>Enter array elements:</label><br />
+      <input type="text" id="arrayInput" placeholder="e.g.10,20" /><br /><br />
+
+      <button onclick="createArray()">Create Array</button>
+      <div id="createResult" class="result"></div>
+      <br />
+
+      <label>Enter element to remove:</label><br />
+      <input
+        type="text"
+        id="removeElement"
+        placeholder="Element to remove"
+      /><br /><br />
+      <button onclick="removeElement()">Remove</button>
+      <div id="removeResult" class="result"></div>
+      <br />
+
+      <label>Enter element to check:</label><br />
+      <input
+        type="text"
+        id="checkElement"
+        placeholder="Element to check"
+      /><br /><br />
+      <button onclick="checkElement()">Check</button>
+      <div id="checkResult" class="result"></div>
+      <br />
+
+      <label>Enter element to append:</label><br />
+      <input
+        type="text"
+        id="appendInput"
+        placeholder="Element to append"
+      /><br /><br />
+      <button onclick="appendElement()">Append</button>
+      <div id="appendResult" class="result"></div>
+      <br />
+
+      <button onclick="emptyArray()">Empty Array</button>
+      <div id="emptyResult" class="result"></div>
+      <br />
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

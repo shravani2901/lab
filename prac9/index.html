@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Student Registration Form</h2>
+      <form id="studentForm" onsubmit="validateForm(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" />
+        <div class="error" id="nameError"></div>
+
+        <label for="roll">Roll Number:</label>
+        <input type="text" id="roll" />
+        <div class="error" id="rollError"></div>
+
+        <label for="address">Address:</label>
+        <textarea id="address"></textarea>
+        <div class="error" id="addressError"></div>
+
+        <label for="pincode">Pincode:</label>
+        <input type="text" id="pincode" maxlength="6" />
+        <div class="error" id="pincodeError"></div>
+
+        <label>Gender:</label>
+        <div class="gender">
+          <label><input type="radio" name="gender" value="Male" />Male</label>
+          <label
+            ><input type="radio" name="gender" value="Female" />Female</label
+          >
+        </div>
+        <div class="error" id="genderError"></div>
+
+        <label for="state">State:</label>
+        <select id="state" name="state" title="select your state">
+          <option value="">Select State</option>
+          <option>Andhra Pradesh</option>
+          <option>Bihar</option>
+          <option>Goa</option>
+          <option>Karnataka</option>
+          <option>Maharashtra</option>
+          <option>Tamil Nadu</option>
+        </select>
+        <div class="error" id="stateError"></div>
+
+        <label for="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" maxlength="10" />
+        <div class="error" id="mobileError"></div>
+
+        <label for="email">Email ID:</label>
+        <input type="text" id="email" />
+        <div class="error" id="emailError"></div>
+
+        <button type="submit">Submit</button>
+        <p id="result" class="error"></p>
+      </form>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

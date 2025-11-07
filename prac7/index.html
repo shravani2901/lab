@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Operations</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Array Operations</h1>
+      <br />
+
+      <label for="arraySize">Enter the array size:</label><br />
+      <input type="number" id="arraySize" placeholder="Array Size" /><br />
+      <button onclick="createArray()">Create Array</button><br />
+      <div id="createArrayResult"></div>
+      <br /><br />
+
+      <label for="addElement">Enter an element:</label><br />
+      <input type="text" id="addElement" placeholder="Enter element" /><br />
+      <button onclick="addElement()">Add Element</button><br />
+      <div id="addElementResult"></div>
+      <br />
+
+      <button onclick="viewArray()">View Array</button><br />
+      <div id="viewArrayResult"></div>
+      <br /><br />
+
+      <label for="checkIndex">Enter index to check:</label><br />
+      <input type="number" id="checkIndex" placeholder="Enter index" /><br />
+      <button onclick="checkArrayObject()">Check Element Type</button><br />
+      <div id="checkArrayResult"></div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
