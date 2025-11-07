@@ -1,0 +1,143 @@
+MVM
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+entity fifo is
+generic (depth:integer:=16);
+  Port ( data_in : in  STD_LOGIC_VECTOR (7 downto 0);
+           clk : in  STD_LOGIC;
+           enw : in  STD_LOGIC;
+           enr : in  STD_LOGIC;
+           reset : in  STD_LOGIC;
+           data_out : out  STD_LOGIC_VECTOR (7 downto 0);
+           fifo_empty : out  STD_LOGIC;
+           fifo_full : out  STD_LOGIC);
+end fifo;
+architecture fifo_arch of fifo is
+type memory_type is array (0 to depth - 1) of STD_LOGIC_VECTOR(7 downto 0);
+signal memory:memory_type:=(others=>(others=>'0'));
+signal writeptr,readptr:integer:=0;
+signal full,empty  : std_logic := '0';
+begin
+fifo_empty<=empty;
+fifo_full<=full;
+process(clk,reset)
+variable num_elem:integer:=0;
+begin
+	if(reset='1') then
+		memory<=(others=>(others=>'0'));
+		data_out<=(others=>'0');
+		empty<='1';
+		full<='0';
+		writeptr<=0;
+		readptr<=0;
+		num_elem:=0;	
+	elsif(rising_edge(clk)) then
+		if(enr='1' and empty='0') then  --read
+			data_out<=memory(readptr);
+			readptr<=readptr+1;
+			num_elem:=num_elem-1;
+		end if;
+		if(enw='1' and full='0') then  --write
+			memory(writeptr)<=data_in;
+			writeptr<=writeptr+1;
+			num_elem:=num_elem+1;
+		end if;
+		if(readptr=depth-1) then
+			writeptr<=0;
+		end if;
+		if(writeptr=depth-1) then
+			readptr<=0;
+		end if;
+		if(num_elem = 0) then
+    empty <= '1';
+else
+    empty <= '0';
+end if;
+if(num_elem = depth) then
+    full <= '1';
+else
+    full <= '0';
+end if;
+	end if;
+end process;	
+end fifo_arch;
+
+TESTBENCH
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.std_logic_ARITH.ALL;
+ENTITY fifo_tb IS
+END fifo_tb;
+ARCHITECTURE behavior OF fifo_tb IS 
+   --Inputs
+   signal data_in,data_out : std_logic_vector(7 downto 0) := (others => '0');
+   signal clk : std_logic := '0';
+   signal enw : std_logic := '0';
+   signal enr : std_logic := '0';
+   signal reset,empty,full : std_logic := '0';
+	signal i :integer:=0;
+	constant depth:integer:=16;
+   -- Clock period definitions
+   constant clk_period : time := 10 ns;
+BEGIN
+	-- Instantiate the Unit Under Test (UUT)
+   uut: entity work.fifo generic map(depth=>depth) PORT MAP (
+          data_in => data_in,
+          clk => clk,
+          enw => enw,
+          enr => enr,
+          reset => reset,
+          data_out => data_out,
+          fifo_empty => empty,
+          fifo_full => full
+        );
+   -- Clock process definitions
+   clk_process :process
+   begin
+		clk <= '0';
+		wait for clk_period/2;
+		clk <= '1';
+		wait for clk_period/2;
+   end process;
+   -- Stimulus process
+   stim_proc: process
+   begin		
+     reset<='1';
+	  wait for clk_period;
+	  reset<='0';
+	  wait for clk_period*3;
+	  enw<='1'; enr<='0';
+	  for i in 1 to 10 loop
+			data_in<=conv_std_logic_vector(i,8);
+			wait for clk_period;
+		end loop;
+		enw<='0'; enr<='1';
+		wait for clk_period*4;
+		enw<='0'; enr<='0';
+		wait for clk_period;
+		for i in 11 to 20 loop
+			data_in<=conv_std_logic_vector(i,8);
+			wait for clk_period;
+		end loop;
+		enw<='0'; enr<='0';
+		wait for clk_period*10;
+		enw<='0'; enr<='1';
+		wait for clk_period*4;
+		enw<='0'; enr<='0';
+		wait for clk_period;
+		enw<='0'; enr<='1';
+		wait for clk_period*4;
+		enw<='0'; enr<='0';
+		wait for clk_period;
+		enw<='0'; enr<='1';
+		wait for clk_period*4;
+		enw<='0'; enr<='0';
+		wait for clk_period;
+		enw<='0'; enr<='1';
+		wait for clk_period*4;
+		enw<='0'; enr<='0';
+		
+      wait;end process;END;

@@ -1,0 +1,100 @@
+MVM
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL; 
+entity modn is
+    Port ( rst : in  STD_LOGIC;
+           pr : in  STD_LOGIC;
+           clk : in  STD_LOGIC;
+           dir : in  STD_LOGIC;
+           Q : out  STD_LOGIC_VECTOR (4 downto 0));
+end modn;
+architecture mod_arch of modn is
+signal Qtemp:STD_LOGIC_VECTOR(4 DOWNTO 0):="00000";
+begin
+	process(rst,pr,clk,dir)
+	begin
+		if rst='1' then
+			Qtemp<="00000";
+		elsif pr='1' then
+			Qtemp<="11111";
+		elsif falling_edge(clk) then
+			if dir='1' then
+				if Qtemp<24 then
+					Qtemp<=Qtemp+1;
+				else 
+					Qtemp<="00000";
+				end if;
+			else
+				if Qtemp>7 then
+					Qtemp<=Qtemp-1;
+				else
+					Qtemp<="11111";
+				end if;
+			end if;
+		end if;
+	end process;
+	Q<=Qtemp;			
+end mod_arch;
+
+TESTBENCH
+
+LIBRARY ieee; 
+USE ieee.std_logic_1164.ALL; 
+ENTITY modn_tb IS 
+END modn_tb; 
+ARCHITECTURE behavior OF modn_tb IS  
+  COMPONENT modn
+    PORT( 
+         rst : IN  std_logic; 
+   pr  : IN  std_logic; 
+         clk : IN  std_logic; 
+         dir : IN  std_logic; 
+         Q : OUT  std_logic_vector(4 downto 0) 
+        ); 
+    END COMPONENT;  
+signal rst : std_logic := '0'; 
+ signal pr  : std_logic := '0'; 
+   signal clk : std_logic := '0'; 
+   signal dir : std_logic := '0'; 
+signal Q : std_logic_vector(4 downto 0); 
+   constant clk_period : time := 10 ns; 
+BEGIN 
+uut: modn PORT MAP ( 
+          rst => rst, 
+    pr  => pr, 
+          clk => clk, 
+          dir => dir, 
+          Q => Q 
+        ); 
+   clk_process :process 
+   begin 
+  clk <= '0'; 
+  wait for clk_period/2; 
+  clk <= '1'; 
+  wait for clk_period/2; 
+   end process; 
+stim_proc_dir: process 
+   begin   
+     
+   dir <= not(dir); 
+   wait for 320 ns; 
+  end process; 
+   stim_proc_rst: process 
+   begin   
+       wait for 680 ns; 
+   rst <= '1'; 
+   wait for 40 ns; 
+   rst <= '0'; 
+   wait; 
+  end process; 
+  stim_proc_pr: process 
+   begin   
+       wait for 750 ns; 
+   pr <= '1'; 
+   wait for 40 ns; 
+   pr <= '0'; 
+   wait; 
+  end process; 
+END;
